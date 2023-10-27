@@ -9,6 +9,7 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <style>
+    /*Definição de estilos de CSS*/
     @keyframes spin {
       0% {
         transform: rotate(0deg);
@@ -41,8 +42,9 @@
 <body class="px-4 py-2">
 
   <main class="d-flex flex-column gap-3 w-50">
+    <!-- Cabeçalho Principal -->
     <h3>Multiple async tasks running concurrently</h3>
-
+    <!-- Seção para buscar dados de uma API -->
     <div class="d-flex gap-2 flex-wrap border-bottom border-1 pb-2">
       <h5 class="w-100">Fetching data from an API</h5>
       <button onclick="loadFirstData" id="button1">Load first data</button>
@@ -56,13 +58,13 @@
       <div class="spinner" id="loader2"></div>
       <div id="result2"></div>
     </div>
-
+    <!-- Seção de digitação de campo de entrada -->
     <div class="d-flex flex-column gap-2 border-bottom border-1 pb-2">
       <h5 class="fw-bold">You can keep using the page while async work is in progress</h5>
       <input type="text" id="typeInput" placeholder="Try typing something" />
       <div>Here: <i id="typed"></i></div>
     </div>
-
+    <!-- Seção de exibição do tempo da pagina -->
     <div class="d-flex flex-column gap-2">
       <h5>Time on the page (continuous async task)</h5>
       <f4 id="timeOnPage">00:00:00</f4>
@@ -70,6 +72,7 @@
   </main>
 
   <script>
+    //Função que simula uma solicitação assincrona
     function fakeFetch() {
       return new Promise((resolve, reject) => {
         const delay = Math.floor(Math.random() * (20000 - 5000 + 1) + 5000);
@@ -83,7 +86,7 @@
         }, delay);
       });
     }
-
+    //Função para lidar com a solicitação assincrona e atualizar a interface
     function handleFetch(loader, result, btn) {
       loader.style.display = 'block';
       btn.disabled = true;
@@ -97,7 +100,7 @@
         btn.disabled = false;
       })
     }
-
+    //Função para carregar dados da primeira e da segunda API
     function loadFirstData() {
       handleFetch(loader1, result1, button1);
     }
@@ -108,11 +111,11 @@
 
     loadFirstData();
     loadSecondData();
-
+    //Lidar entrada do usuario
     typeInput.addEventListener('input', function (event) {
       typed.innerText = event.target.value;
     });
-
+    //Iniciar o contador de tempo na pagina
     const start = Date.now();
     function trackTimeOnPage() {
       setInterval(() => {
